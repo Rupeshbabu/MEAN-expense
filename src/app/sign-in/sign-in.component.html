@@ -1,0 +1,47 @@
+<div class="row signin-class">
+    <div class="col-6">
+        <div class="card">
+            <h5 class="card-title">Sign In Form</h5>
+            <div class="card-body">
+                <form autocomplete="off" [formGroup]="signinForm">
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="title" class="form-control" formControlName="email" required
+                            placeholder="Ex: rupesh@example.com"
+                            [ngClass]="{ 'is-invalid': signinForm.hasError('required', 'email') && (signinForm.controls['email'].dirty || signinForm.controls['email'].touched) || signinForm.hasError('email', 'email'),
+                                     'is-valid': signinForm.controls['email'].touched && signinForm.controls['email'].valid}">
+
+                        <div *ngIf="signinForm.hasError('required', 'email') && signinForm.controls['email'].dirty"
+                            class="invalid-feedback">
+                            <span>Email is required</span>
+                        </div>
+                        <div class="text-danger" *ngIf="signinForm.hasError('email', 'email')" class="invalid-feedback">
+                            <span>Please enter a valid email address</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" formControlName="password" required
+                            placeholder="*****"
+                            [ngClass]="{ 'is-invalid': signinForm.hasError('required', 'password') && (signinForm.controls['password'].dirty || signinForm.controls['password'].touched),
+                                         'is-valid': signinForm.controls['password'].touched && signinForm.controls['password'].valid}">
+                        <div *ngIf="signinForm.hasError('required', 'password') && signinForm.controls['password'].dirty"
+                            class="invalid-feedback">
+                            <span>Password is required</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button type="reset" (click)="resetForm()" class="btn btn-secondary mx-2">Clear</button>
+                <button type="submit" [disabled]="signinForm.invalid" (click)="onSubmit()"
+                    class="btn btn-success">Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>

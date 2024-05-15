@@ -1,0 +1,48 @@
+<div class="main">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">Expenses Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/expense"> <i class="fa-solid fa-money-bill"></i> Expense</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/category"> <i class="fa-solid fa-layer-group"></i> Category</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/dashboard/history"><i class="fa-solid fa-folder-open"></i> History</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a class="btn btn-light" routerLink="/dashboard/add-wallet"><i class="fa-solid fa-wallet"></i>   <span class="badge text-bg-light ms-2"><i class="fa-solid fa-indian-rupee-sign"></i> {{wallet}}  </span><i class="fa-solid fa-circle-plus"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="onLogout()"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+                    </li>
+                    
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <router-outlet />
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <span>© 2024 | Design & Develop By Rupesh</span>
+        </div>
+    </footer>
+   
+</div>
+
+

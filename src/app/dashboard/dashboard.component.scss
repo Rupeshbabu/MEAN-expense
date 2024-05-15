@@ -1,0 +1,15 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to 100% of viewport height */
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff !important;
+    padding: 20px 0;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+.text-bold {
+    font-weight: bold;
+}

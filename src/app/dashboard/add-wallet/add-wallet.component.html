@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-3">
+        <div class="card">
+            <h5 class="card-title">Add Wallet Form</h5>
+            <div class="card-body">
+                <form [formGroup]="addWalletForm">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input type="number" class="form-control" formControlName="currentAmount" id="amount"
+                        [ngClass]="{ 'is-invalid': addWalletForm.hasError('required', 'currentAmount') && (addWalletForm.controls['currentAmount'].dirty || addWalletForm.controls['currentAmount'].touched),
+                                     'is-valid': addWalletForm.controls['currentAmount'].touched && addWalletForm.controls['currentAmount'].valid}">
+                    
+                    <div *ngIf="addWalletForm.hasError('required', 'currentAmount') && addWalletForm.controls['currentAmount'].dirty"
+                    class="invalid-feedback">
+                    <span>Amount is required</span>
+                </div>
+                </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary mx-2">Clear</button>
+                <button class="btn btn-success" (click)="addWalletBalance()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card">
+           <div class="d-flex justify-content-between m-3">
+            <h5 class="card-title">Wallet Transaction History</h5>
+            <p>Available Balance: <span class="fs-3 fw-bold text-success"> ₹ {{currentBalance}}</span></p>
+           </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Trans. Amount</th>
+                                <th scope="col">Previous Balance</th>
+                                <!-- <th scope="col">Available Balance</th> -->
+                                <th scope="col">Current Balance</th>
+                                <!-- <th scope="col">Available Balance</th> -->
+                                <th scope="col">Payment Type</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let trans of transHistory.walletHistory; let i = index">
+                                <th scope="row">{{i + 1}}</th>
+                                <td><span [ngClass]="getClass(trans.paymentType)">{{trans.currentAmount | currency:'₹ '}}</span></td>
+
+                                <td>{{trans.prevAmount | currency:'₹ '}}</td>
+                                <td>{{getBalance(trans.prevAmount, trans.currentAmount, trans.paymentType) |  currency:'₹ '}}</td>
+                                <td><span [ngClass]="getClass(trans.paymentType)">{{trans.paymentType | uppercase }}</span></td>
+                                <td>{{trans.dateofTrans | date: 'medium' }}</td>
+                                <!-- <td>
+                                    <a href="" class="btn btn-outline-primary btn-sm mx-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                </td> -->
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

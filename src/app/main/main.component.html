@@ -1,0 +1,38 @@
+<div class="main">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Expenses Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-address-card"></i> About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-bell-concierge"></i> Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/main/signin"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+                    </li>
+                    <li class="nav-item ms-3">
+                        <a class="btn btn-outline-light" routerLink="/main/signup"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container my-5">
+        <router-outlet />
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <span>© 2024 | Design & Develop By Rupesh</span>
+        </div>
+    </footer>
+</div>

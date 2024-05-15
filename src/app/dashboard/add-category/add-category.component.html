@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <h5 class="card-title">Add Category Form</h5>
+            <div class="card-body">
+                <form autocomplete="off" [formGroup]="addCategoryForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" formControlName="name" class="form-control" required
+                            placeholder="Ex: Medical Bills"
+                            [ngClass]="{ 'is-invalid': addCategoryForm.hasError('required', 'name') && (addCategoryForm.controls['name'].dirty || addCategoryForm.controls['name'].touched),
+                                     'is-valid': addCategoryForm.controls['name'].touched && addCategoryForm.controls['name'].valid}">
+                        <!-- <p class="hint">Note: Valid Status <span class="text-success bold">is-valid</span> or <span class="text-danger bold">is-invalid</span> is class name. For message: <span class="text-success bold">valid-feedback</span> or <span class="text-danger bold">invalid-feedback</span> is div class</p> -->
+                        <div *ngIf="addCategoryForm.hasError('required', 'name') && addCategoryForm.controls['name'].dirty"
+                            class="invalid-feedback">
+                            <span>Title is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message (Optional)</label>
+                        <textarea class="form-control" placeholder="Required example textarea" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary mx-2">Clear</button>
+                <button class="btn btn-success" (click)="addCategory()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <app-category-list [categoryList]="categories"></app-category-list>
+    </div>
+</div>

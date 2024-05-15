@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <h5 class="card-title">Add Expense Form</h5>
+            <div class="card-body">
+                <form autocomplete="off" [formGroup]="addExpenseForm">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" formControlName="title" class="form-control" required
+                            placeholder="Ex: Rent"
+                            [ngClass]="{ 'is-invalid': addExpenseForm.hasError('required', 'title') && (addExpenseForm.controls['title'].dirty || addExpenseForm.controls['title'].touched),
+                                     'is-valid': addExpenseForm.controls['title'].touched && addExpenseForm.controls['title'].valid}">
+                        <!-- <p class="hint">Note: Valid Status <span class="text-success bold">is-valid</span> or <span class="text-danger bold">is-invalid</span> is class name. For message: <span class="text-success bold">valid-feedback</span> or <span class="text-danger bold">invalid-feedback</span> is div class</p> -->
+                        <div *ngIf="addExpenseForm.hasError('required', 'title') && addExpenseForm.controls['title'].dirty"
+                            class="invalid-feedback">
+                            <span>Title is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" name="amount" class="form-control" required formControlName="amount"
+                            placeholder="₹ 5000"
+                            [ngClass]="{ 'is-invalid': addExpenseForm.hasError('required', 'amount') && (addExpenseForm.controls['amount'].dirty || addExpenseForm.controls['amount'].touched),
+                                     'is-valid': addExpenseForm.controls['amount'].touched && addExpenseForm.controls['amount'].valid}">
+                        <div *ngIf="addExpenseForm.hasError('required', 'amount') && addExpenseForm.controls['amount'].dirty"
+                            class="invalid-feedback">
+                            <span>Amount is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select class="form-select" formControlName="category" required aria-label="select example"
+                            [ngClass]="{ 'is-invalid': addExpenseForm.hasError('required', 'category') && (addExpenseForm.controls['category'].dirty || addExpenseForm.controls['category'].touched),
+                                     'is-valid': addExpenseForm.controls['category'].touched && addExpenseForm.controls['category'].valid}">
+                            <option value="" disabled>Open this select menu</option>
+                            <option *ngFor="let category of categories" value="{{category._id}}">{{category.name}}
+                            </option>
+
+                        </select>
+                        <div *ngIf="addExpenseForm.hasError('required', 'category') && addExpenseForm.controls['category'].dirty"
+                            class="invalid-feedback">
+                            <span>Category is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthdate">Date of Expense</label>
+                        <input type="date" class="form-control" id="birthdate" formControlName="dateOfTrans"
+                            name="birthdate" required
+                            [ngClass]="{ 'is-invalid': addExpenseForm.hasError('required', 'dateOfTrans') && (addExpenseForm.controls['dateOfTrans'].dirty || addExpenseForm.controls['dateOfTrans'].touched),
+                                     'is-valid': addExpenseForm.controls['dateOfTrans'].touched && addExpenseForm.controls['dateOfTrans'].valid}">
+
+                        <div *ngIf="addExpenseForm.hasError('required', 'dateOfTrans') && addExpenseForm.controls['dateOfTrans'].dirty"
+                            class="invalid-feedback">
+                            <span>Date is required</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message (Optional)</label>
+                        <textarea class="form-control" placeholder="Required example textarea" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-secondary mx-2">Clear</button>
+                <button class="btn btn-success" [disabled]="addExpenseForm.invalid" (click)="addExpense()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <app-expense-list [getExpenses]="expenseHistory" (updateExpense)="loadExpenseRecord($event)"></app-expense-list>
+    </div>
+</div>
